@@ -1,17 +1,18 @@
 <script setup>
-import { ref, onBeforeMount, nextTick, watch } from "vue";
+import { ref, onBeforeMount, nextTick } from "vue";
+import { useMobileDetection } from "vue3-mobile-detection";
+const { isMobile } = useMobileDetection();
 
-const isInsideTank = ref(false);
+const isInside = ref(false);
+onBeforeMount(() => {
+  nextTick(() => (isInside.value = true));
+});
 
-// onBeforeMount(() => {
-//   nextTick(() => (isInsideTank.value = true));
-// });
+// 電腦版移動到 RankDT 內部
 </script>
 
 <template>
-  <!-- <Teleport to="#RankDT" v-if="isInsideTank" :disabled="isMobile()"> -->
-  <!-- <Teleport to="#RankDT" v-if="isInsideTank"> -->
-  <Teleport >
+  <Teleport to="#RankDT" v-if="isInside" :disabled="isMobile()">
     <div class="Winlist">
       <h3>Winlist</h3>
       <div>101</div>

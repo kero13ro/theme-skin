@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .wrap {
   border: 1px solid #000;
   padding: 10px;

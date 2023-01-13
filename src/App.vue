@@ -37,10 +37,12 @@ const ThemeStore = useThemeStore();
   top: 0;
   right: 0;
 }
+#Header {
+  grid-column: 3 span;
+}
 .tem11, .tem12 {
-  #Header {
-    background-color: aqua;
-    grid-column: 3 span;
+  #Marquee {
+    grid-row: 2 span;
   }
 }
 </style>
