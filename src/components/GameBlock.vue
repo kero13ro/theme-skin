@@ -1,5 +1,5 @@
 <template>
-<div class="wrap" @click="changeBackgroundColor">
+<div class="block" @click="changeBackgroundColor" id="GameBlock">
   <!-- CSS 變數、函式，改用 JS 控制 -->
   <!-- 設計師儀表板 https://www.primefaces.org/designer-vue/#/ -->
   <h1>GameBlock</h1>
@@ -11,8 +11,8 @@
 export default {
   data() {
     return {
-      HUE: 0,
-      LIGHTNESS: 50,
+      HUE: 70,
+      LIGHTNESS: 40,
     };
   },
   computed: {
@@ -20,7 +20,7 @@ export default {
       return `hsl(${this.HUE}, 36%, ${this.LIGHTNESS}%)`;
     },
     bgColor(){
-      return `hsl(${this.HUE}, 36%, ${this.LIGHTNESS + 30}%)`;
+      return `hsl(${this.HUE}, 36%, ${this.LIGHTNESS + 50}%)`;
     },
   },
   methods: {
@@ -33,10 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-  border: 1px solid #000;
-  padding: 10px;
-
+.block {
   background-color: v-bind('bgColor');
   color: v-bind('txtColor');
 }

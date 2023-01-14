@@ -12,7 +12,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <Teleport to="#RankDT" v-if="isInside" :disabled="isMobile()">
+  <Teleport to="#RankDT" v-if="isInside" :disabled="isMobile()" id="Winlist">
     <div class="Winlist">
       <h3>Winlist</h3>
       <div>101</div>

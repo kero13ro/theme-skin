@@ -6,19 +6,15 @@ const ThemeStore = useThemeStore();
 </script>
 
 <template>
-<div class="wrap">
+<div class="block" id="Banner">
   <h1>Banner</h1>
-  <img :src="`src/template/s${ThemeStore.templateId}/bg.jpg`" alt="">
+  <img :src="`src/template/${ThemeStore.templateId}/bg.jpg`" alt="">
 </div>
 </template>
 
 <style lang="scss" scoped>
-
-.wrap {
-  border: 1px solid #000;
-  padding: 10px;
-}
 img {
   width: 100%;
+  max-width: 300px;
 }
 </style>

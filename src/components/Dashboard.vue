@@ -1,54 +1,63 @@
 <script setup>
-import { useThemeStore } from "../stores/theme.js";
+import { useThemeStore } from "@/stores/theme.js";
+import { useColorMode } from '@vueuse/core'
 
 const theme = useThemeStore();
+
+const themeMap = {
+  s11: ["red", "blue"],
+  s12: ["gold", "black"],
+  s13: ["black", "water"],
+};
+
+const mode = useColorMode({
+  attribute: 'theme',
+  emitAuto: true,
+})
+
+const handleSkin = (skin) => {
+  theme.skin = skin;
+  mode.value = skin;
+}
+
+const handleTemp = (temp) => {
+  theme.templateId = temp
+  handleSkin(themeMap[theme.templateId][0])
+}
+
 </script>
 
 <template>
-  <div class="dashboard">
-    <div>
-      <el-radio-group
-        :model-value="theme.templateId"
-        @update:modelValue="e => theme.templateId = e"
-        size="large"
-      >
-        <el-radio-button :label="11" />
-        <el-radio-button :label="12" />
-        <el-radio-button :label="13" />
-      </el-radio-group>
-    </div>
-
-    <div v-if="theme.templateId === 11">
-      <el-radio-group
-        :model-value="theme.skin"
-        @update:modelValue="e => theme.skin = e"
-        size="large"
-      >
-        <el-radio-button label="red" />
-        <el-radio-button label="blue" />
-      </el-radio-group>
-    </div>
-
-    <div v-if="theme.templateId === 12">
-      <el-radio-group
-        :model-value="theme.skin"
-        @update:modelValue="e => theme.skin = e"
-        size="large"
-      >
-        <el-radio-button label="gold" />
-        <el-radio-button label="black" />
-      </el-radio-group>
-    </div>
+  <div id="Dashboard">
+    <el-radio-group
+      class="mb8"
+      :model-value="theme.templateId"
+      @update:modelValue="handleTemp"
+    >
+      <el-radio-button label="s11" />
+      <el-radio-button label="s12" />
+      <el-radio-button label="s13" />
+    </el-radio-group>
+    <br />
+    <el-radio-group
+      :model-value="theme.skin"
+      @update:modelValue="handleSkin"
+      size="large"
+    >
+      <template v-for="skin in themeMap[theme.templateId]">
+        <el-radio-button :label="skin" />
+      </template>
+    </el-radio-group>
   </div>
 </template>
 
 <style lang="scss">
-.dashboard {
+#Dashboard {
+  position: fixed;
+  top: 0;
+  right: 0;
   padding: 10px;
   background-color: #fff;
-  > div:first-child .el-radio-group {
-    margin-bottom: 10px;
-  }
-  box-shadow: 0 0 10px rgba(#000000, 0.1);
+  box-shadow: 0 0 10px rgba(#000000, 0.2);
 }
 </style>
