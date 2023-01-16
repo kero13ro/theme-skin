@@ -10,21 +10,11 @@ import RankDT from "@/components/RankDT.vue";
 import Winlist from "@/components/Winlist.vue";
 import Dashboard from "@/components/Dashboard.vue";
 import Modal from "@/components/demo/Modal";
-import forceRender from "@/hook/useForceRender.js";
+import useAsyncLayout from "@/hook/useAsyncLayout.js";
 
 const theme = useThemeStore();
-const { isShow, render } = forceRender();
+const { AsyncLayout, isShow } = useAsyncLayout();
 
-let AsyncLayout = defineAsyncComponent(() =>
-  import(`../template/${theme.templateId}/Layout.vue`)
-);
-
-watch(theme, () => {
-  AsyncLayout = defineAsyncComponent(() =>
-    import(`../template/${theme.templateId}/Layout.vue`)
-  );
-  render();
-});
 </script>
 
 <template>

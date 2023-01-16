@@ -1,29 +1,43 @@
 <script setup>
 import { useThemeStore } from "@/stores/theme.js";
-import { useColorMode } from '@vueuse/core'
+import { useColorMode } from "@vueuse/core";
 
 const theme = useThemeStore();
 
+async function importModule(update) {
+  const importModule = await import(
+    `../template/${theme.templateId}/${theme.skin}/config.js`
+  );
+  const { colors } = importModule.default;
+  update(colors);
+}
+
 const themeMap = {
-  s11: ["red", "blue"],
-  s12: ["gold", "black"],
+  s11: ["blue", "red"],
+  s12: ["gold", "green"],
   s13: ["black", "water"],
 };
 
 const mode = useColorMode({
-  attribute: 'theme',
+  attribute: "theme",
   emitAuto: true,
-})
+});
 
 const handleSkin = (skin) => {
   theme.skin = skin;
   mode.value = skin;
-}
+
+  importModule((colors) => {
+    theme.$patch({ colors });
+  });
+};
 
 const handleTemp = (temp) => {
-  theme.templateId = temp
-  handleSkin(themeMap[theme.templateId][0])
-}
+  theme.templateId = temp;
+  handleSkin(themeMap[theme.templateId][0]);
+};
+
+handleSkin(themeMap[theme.templateId][0]);
 
 </script>
 
