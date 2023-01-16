@@ -8,8 +8,6 @@ const { colors } = ThemeStore;
 <template>
   <div class="block" id="Marquee">
     <h1>Marquee</h1>
-    {{ main }}
-    {{ dark }}
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
       quibusdam fuga blanditiis! Similique distinctio vero eveniet ea corrupti.

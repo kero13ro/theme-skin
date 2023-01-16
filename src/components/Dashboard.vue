@@ -1,6 +1,8 @@
 <script setup>
 import { useThemeStore } from "@/stores/theme.js";
 import { useColorMode } from "@vueuse/core";
+import { ref, nextTick, watch, defineAsyncComponent } from "vue";
+import '../template/s11/blue/custom.css'
 
 const theme = useThemeStore();
 
@@ -10,6 +12,15 @@ async function importModule(update) {
   );
   const { colors } = importModule.default;
   update(colors);
+}
+
+async function importCSS() {
+  const moduleCSS = await import(
+    `../template/${theme.templateId}/${theme.skin}/custom.css`
+  ).then((val) => {
+    console.log(val)
+  })
+  console.log(moduleCSS)
 }
 
 const themeMap = {
@@ -30,6 +41,7 @@ const handleSkin = (skin) => {
   importModule((colors) => {
     theme.$patch({ colors });
   });
+  importCSS();
 };
 
 const handleTemp = (temp) => {
@@ -38,6 +50,10 @@ const handleTemp = (temp) => {
 };
 
 handleSkin(themeMap[theme.templateId][0]);
+
+// watch(theme,(val) => {
+//   console.log(val)
+// })
 
 </script>
 
