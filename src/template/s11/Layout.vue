@@ -1,7 +1,7 @@
 <script setup>
 import { useSlots, useAttrs } from 'vue'
 
-import ModalBase from "@/components/demo/ModalBase.vue";
+import ModalBase from "@/components/hoc/ModalBase.vue";
 const slots = useSlots()
 // console.log(slots.default())
 
