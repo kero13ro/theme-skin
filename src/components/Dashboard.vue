@@ -72,5 +72,6 @@ watch(
   padding: 10px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(#000000, 0.2);
+  z-index: 1;
 }
 </style>

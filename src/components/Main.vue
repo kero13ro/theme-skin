@@ -9,7 +9,6 @@ import Banner from "@/components/Banner.vue";
 import RankDT from "@/components/RankDT.vue";
 import Winlist from "@/components/Winlist.vue";
 import Dashboard from "@/components/Dashboard.vue";
-import Modal from "@/components/demo/Modal";
 import useAsyncLayout from "@/hook/useAsyncLayout.js";
 
 const theme = useThemeStore();
@@ -19,8 +18,8 @@ const { AsyncLayout } = useAsyncLayout();
 
 <template>
   <div :class="theme.templateId">
-    <Modal />
-
+    <Dashboard />
+    
     <AsyncLayout class="container">
       <Header />
       <Marquee />
@@ -29,8 +28,6 @@ const { AsyncLayout } = useAsyncLayout();
       <Winlist />
       <GameBlock />
     </AsyncLayout>
-
-    <Dashboard />
   </div>
 </template>
 
