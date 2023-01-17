@@ -5,6 +5,14 @@ node version: 16 以上
 - 抽離每個版型畫面邏輯、樣式變數，figma、zeplin 匯出後直接使用
 
 
+## 架構初擬
+src/template： 所有版型、膚色的邏輯
+  - config.js: 與 tailwind 格式相同，可由 figma、zeplin 匯出。
+  - custom.css 為覆蓋用的客製化樣式，微調時可由後台上傳，不需打版。
+  - 圖片資料夾：依照同樣架構放置圖片，即可提換圖片。
+
+
+
 
 ## Recommended IDE Setup
 

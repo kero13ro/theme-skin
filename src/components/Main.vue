@@ -13,7 +13,7 @@ import Modal from "@/components/demo/Modal";
 import useAsyncLayout from "@/hook/useAsyncLayout.js";
 
 const theme = useThemeStore();
-const { AsyncLayout, isShow } = useAsyncLayout();
+const { AsyncLayout } = useAsyncLayout();
 
 </script>
 
@@ -21,7 +21,7 @@ const { AsyncLayout, isShow } = useAsyncLayout();
   <div :class="theme.templateId">
     <Modal />
 
-    <AsyncLayout v-if="isShow" class="container">
+    <AsyncLayout class="container">
       <Header />
       <Marquee />
       <Banner />

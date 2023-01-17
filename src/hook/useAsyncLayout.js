@@ -1,25 +1,20 @@
-import { ref, nextTick, watch, defineAsyncComponent } from 'vue'
-import useForceRender from "@/hook/useForceRender.js";
+import { ref, nextTick, watch, defineAsyncComponent, shallowRef } from 'vue'
 import { useThemeStore } from "@/stores/theme.js";
 
 export default function () {
   const theme = useThemeStore();
-  const { isShow, render } = useForceRender();
+  const AsyncLayout = shallowRef()
+  const Layouts = import.meta.glob("../template/*/Layout.vue");
 
-  let AsyncLayout = defineAsyncComponent(() =>
-    import(`@/template/${theme.templateId}/Layout.vue`)
+  watch(
+    () => theme.templateId,
+    () => {
+      AsyncLayout.value = defineAsyncComponent(Layouts[`../template/${theme.templateId}/Layout.vue`])
+    },
+    { immediate: true }
   );
-
-  watch(theme, () => {
-    AsyncLayout = defineAsyncComponent(() =>
-      import(`@/template/${theme.templateId}/Layout.vue`)
-    );
-    render();
-    console.log('render')
-  });
 
   return {
     AsyncLayout,
-    isShow,
   }
 }

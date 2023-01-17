@@ -1,8 +1,5 @@
 <script setup>
 import { ref, onBeforeMount, nextTick } from "vue";
-import { useMobileDetection } from "vue3-mobile-detection";
-// 打包會有衝突，待釐清
-const { isMobile } = useMobileDetection();
 
 const isInside = ref(false);
 onBeforeMount(() => {
@@ -10,11 +7,12 @@ onBeforeMount(() => {
 });
 
 // 電腦版移動到 RankDT 內部
+const isMobile = window.screen.width < 768;
 </script>
 
 <template>
-  <Teleport to="#RankDT" v-if="isInside" :disabled="isMobile()" id="Winlist">
-    <div class="Winlist">
+  <Teleport to="#RankDT" v-if="isInside" :disabled="isMobile">
+    <div  id="Winlist" class="block">
       <h3>Winlist</h3>
       <div>101</div>
       <div>102</div>
@@ -26,8 +24,7 @@ onBeforeMount(() => {
 </template>
 
 <style lang="scss" scoped>
-.Winlist {
-  background-color: #ddd;
-  padding: 10px;
+#Winlist {
+  // background-color: greenyellow;
 }
 </style>
