@@ -1,7 +1,7 @@
 <template>
 <div class="block" @click="changeBackgroundColor" id="GameBlock">
   <!-- CSS 變數、函式，改用 JS 控制 -->
-  <!-- 設計師儀表板 https://www.primefaces.org/designer-vue/#/ -->
+  <!-- 可以實作 設計師儀表板 https://www.primefaces.org/designer-vue/#/ -->
   <h1>GameBlock</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quibusdam fuga blanditiis! Similique distinctio vero eveniet ea corrupti. Animi, mollitia?</p>
 </div>

@@ -6,7 +6,7 @@ onBeforeMount(() => {
   nextTick(() => (isInside.value = true));
 });
 
-// 電腦版移動到 RankDT 內部
+// 電腦版時，傳送到 RankDT 內部
 const isMobile = window.screen.width < 768;
 </script>
 

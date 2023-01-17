@@ -19,3 +19,7 @@ src/template： 所有版型、膚色的邏輯
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
 
+## todo
+- 變數檔案切換模板時，潛在衝突
+- build tree shaking
+- 手機版、電腦版使用不同版型、膚色

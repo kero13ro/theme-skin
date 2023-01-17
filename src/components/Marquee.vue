@@ -1,8 +1,8 @@
 <script setup>
 import { useThemeStore } from "../stores/theme.js";
 
-const ThemeStore = useThemeStore();
-const { colors } = ThemeStore;
+const theme = useThemeStore();
+const { colors } = theme;
 </script>
 
 <template>

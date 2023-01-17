@@ -1,15 +1,15 @@
 <script setup>
+// 動態載入圖片
 import { useThemeStore } from "../stores/theme.js";
 import { ref } from "vue";
 
-const ThemeStore = useThemeStore();
+const theme = useThemeStore();
 </script>
 
 <template>
 <div class="block" id="Banner">
   <h1>Banner</h1>
-  <!-- <img :src="`src/template/${ThemeStore.templateId}/bg.jpg`" alt=""> -->
-  <img :src="`src/template/${ThemeStore.templateId}/${ThemeStore.skin}/bg.jpg`" alt="">
+  <img :src="`src/template/${theme.templateId}/${theme.skin}/bg.jpg`" alt="">
 </div>
 </template>
 
