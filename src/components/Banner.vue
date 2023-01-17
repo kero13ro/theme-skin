@@ -8,7 +8,8 @@ const ThemeStore = useThemeStore();
 <template>
 <div class="block" id="Banner">
   <h1>Banner</h1>
-  <img :src="`src/template/${ThemeStore.templateId}/bg.jpg`" alt="">
+  <!-- <img :src="`src/template/${ThemeStore.templateId}/bg.jpg`" alt=""> -->
+  <img :src="`src/template/${ThemeStore.templateId}/${ThemeStore.skin}/bg.jpg`" alt="">
 </div>
 </template>
 

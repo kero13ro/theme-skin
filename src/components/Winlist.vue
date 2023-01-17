@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onBeforeMount, nextTick } from "vue";
 import { useMobileDetection } from "vue3-mobile-detection";
+// 打包會有衝突，待釐清
 const { isMobile } = useMobileDetection();
 
 const isInside = ref(false);

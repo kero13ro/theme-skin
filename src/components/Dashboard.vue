@@ -2,26 +2,12 @@
 import { useThemeStore } from "@/stores/theme.js";
 import { useColorMode } from "@vueuse/core";
 import { ref, nextTick, watch, defineAsyncComponent } from "vue";
-import '../template/s11/blue/custom.css'
+import useUpdateTheme from "@/hook/useUpdateTheme.js";
 
 const theme = useThemeStore();
 
-async function importModule(update) {
-  const importModule = await import(
-    `../template/${theme.templateId}/${theme.skin}/config.js`
-  );
-  const { colors } = importModule.default;
-  update(colors);
-}
-
-async function importCSS() {
-  const moduleCSS = await import(
-    `../template/${theme.templateId}/${theme.skin}/custom.css`
-  ).then((val) => {
-    console.log(val)
-  })
-  console.log(moduleCSS)
-}
+// 載入 顏色變數檔、客製化CSS
+const { importModule, importCSS } = useUpdateTheme();
 
 const themeMap = {
   s11: ["blue", "red"],
@@ -29,32 +15,29 @@ const themeMap = {
   s13: ["black", "water"],
 };
 
+// ex. <html theme="gold">
 const mode = useColorMode({
   attribute: "theme",
   emitAuto: true,
 });
 
-const handleSkin = (skin) => {
-  theme.skin = skin;
-  mode.value = skin;
+watch(
+  () => theme.templateId,
+  () => {
+    theme.skin = themeMap[theme.templateId][0];
+  },
+  { immediate: true }
+);
 
-  importModule((colors) => {
-    theme.$patch({ colors });
-  });
-  importCSS();
-};
-
-const handleTemp = (temp) => {
-  theme.templateId = temp;
-  handleSkin(themeMap[theme.templateId][0]);
-};
-
-handleSkin(themeMap[theme.templateId][0]);
-
-// watch(theme,(val) => {
-//   console.log(val)
-// })
-
+watch(
+  () => theme.skin,
+  (val) => {
+    mode.value = val;
+    importModule((colors) => theme.$patch({ colors }));
+    importCSS();
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
@@ -62,7 +45,7 @@ handleSkin(themeMap[theme.templateId][0]);
     <el-radio-group
       class="mb8"
       :model-value="theme.templateId"
-      @update:modelValue="handleTemp"
+      @update:modelValue="(temp) => (theme.templateId = temp)"
     >
       <el-radio-button label="s11" />
       <el-radio-button label="s12" />
@@ -71,7 +54,7 @@ handleSkin(themeMap[theme.templateId][0]);
     <br />
     <el-radio-group
       :model-value="theme.skin"
-      @update:modelValue="handleSkin"
+      @update:modelValue="(skin) => (theme.skin = skin)"
       size="large"
     >
       <template v-for="skin in themeMap[theme.templateId]">

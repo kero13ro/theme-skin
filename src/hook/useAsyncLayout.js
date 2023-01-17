@@ -15,6 +15,7 @@ export default function () {
       import(`@/template/${theme.templateId}/Layout.vue`)
     );
     render();
+    console.log('render')
   });
 
   return {

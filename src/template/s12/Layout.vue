@@ -4,8 +4,9 @@
 <template>
 <div>
   <div class="block">
-    <h1>extra</h1>
+    <h1>extra222</h1>
   </div>
+  <h1>123</h1>
   <slot></slot>
 </div>
 </template>
