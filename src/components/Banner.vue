@@ -2,8 +2,10 @@
 // 動態載入圖片
 import { useThemeStore } from "../stores/theme.js";
 import { ref } from "vue";
-
 const theme = useThemeStore();
+// const imageUrl = new URL(`@/template/${theme.templateId || 's11'}/${theme.skin || 'blue'}/bg.jpg`, import.meta.url).href
+// const imageUrl = new URL(`@/template/s11/blue/bg.jpg`, import.meta.url).href
+
 </script>
 
 <template>
